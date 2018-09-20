@@ -155,6 +155,7 @@ class Team:
         for hero in self.heroes:
             print(hero.name)
 
+
     def attack(self, other_team):
         """
         This method should total our teams attack strength and call the defend() method on the rival team that is passed in.
@@ -177,6 +178,9 @@ class Team:
         Return number of heroes killed in attack.
         """
         total_team_defense = 0
+        for hero in self.heroes:
+            hero.defend += total_team_defense
+        return total_team_defense
 
 
     def deal_damage(self, damage):
@@ -220,20 +224,31 @@ class Team:
 
 class Arena:
     def __init__(self):
-        """
+
         self.team_one = None
         self.team_two = None
-        """
+
 
     def build_team_one(self):
         """
         This method should allow a user to build team one.
         """
+        self.team_one.append(team.self.name)
+
 
     def build_team_two(self):
         """
         This method should allow user to build team two.
         """
+        self.team_two.append(team.self.name)
+
+
+    def alternate():
+        while True:
+            yield 0
+            yield 1
+        alternator = alternate()
+
 
     def team_battle(self):
         """
@@ -241,11 +256,30 @@ class Arena:
         one or both teams are dead.
         """
 
+        if alternator.next() == 0:
+            self.team_one.attack()
+            self.team_two.defend()
+            if self.team_two.defend() <= 0:
+                self.team_one.update_kills()
+                self.team_two.deal_damage()
+            else:
+                team.team_battle()
+        else:
+            self.team_two.attack()
+            self.team_one.defend()
+            if self.team_one.defend() <= 0:
+                self.team_two.update_kills()
+                self.team_one.deal_damage()
+            else:
+                team.team_battle()
+
     def show_stats(self):
         """
         This method should print out the battle statistics
         including each heroes kill/death ratio.
         """
-        
+        print(team_one.self.stats)
+        print(team_two.self.stats)
+
 
 #if __name__ == "__main__":
