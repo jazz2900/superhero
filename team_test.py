@@ -98,17 +98,17 @@ def build_hero(num_of_weapons=0, num_of_armor=0, num_of_abilities=0):
         "San Luis Obispo",
         "Ted Kennedy",
         "San Francisco",
-        "Bananas"]    
-    
+        "Bananas"]
+
     weapons = []
     armors = []
 
     for _ in range(num_of_weapons):
         weapons.append(create_weapon())
-    
+
     for _ in range(num_of_armor):
         armors.append(create_armor())
-    
+
     for _ in range(num_of_abilities):
         weapons.append(create_ability())
 
@@ -117,10 +117,10 @@ def build_hero(num_of_weapons=0, num_of_armor=0, num_of_abilities=0):
 
     for item in weapons:
         hero.add_ability(item)
-    
+
     for armor in armors:
         hero.add_armor(armor)
-    
+
     return hero
 
 
@@ -232,12 +232,12 @@ def test_armor():
 
 def test_hero_default_health():
     jodie = superheroes.Hero("Jodie Foster")
-    assert jodie.current_health == 100
+    assert jodie.health == 100
 
 
 def test_hero_init_new_health():
     hero = superheroes.Hero("Jodie Foster", 600)
-    assert hero.current_health == 600
+    assert hero.health == 600
 
 
 def test_hero_start_health():
@@ -260,7 +260,7 @@ def test_hero_defense_mean_value():
     calculated_mean = strength // 2
     iterations = 8000
     total_attack = 0
-    for _ in range(iterations): 
+    for _ in range(iterations):
         attack_value = athena.defend()
         assert attack_value >= 0 and attack_value <= strength
         total_attack += attack_value
@@ -312,11 +312,11 @@ def test_team_attack():
     socks = superheroes.Armor("Socks", 10)
     athena.add_armor(socks)
     team_two.add_hero(athena)
-    assert team_two.heroes[0].current_health == 100
+    assert team_two.heroes[0].health == 100
 
     team_one.attack(team_two)
 
-    assert team_two.heroes[0].current_health <= 0
+    assert team_two.heroes[0].health <= 0
 
 
 def test_team_attack_kills():
@@ -362,8 +362,8 @@ def test_revive_heroes():
 
 
     for hero in team_one.heroes:
-        hero.current_health == 12
+        hero.health == 12
     team_one.revive_heroes()
 
     for hero in team_one.heroes:
-        assert hero.current_health == 100
+        assert hero.health == 100
