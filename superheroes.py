@@ -14,10 +14,10 @@ class Hero:
         self.deaths = 0
         self.kills = 0
 
-    def __str__(self):
-        return "{}'s current health is {} and has killed {} opponents and has died {} times".format(
-            self.name, self.health, self.kills, self.deaths
-        )
+    # def __str__(self):
+    #     print("{}'s current health is {} and has killed {} opponents and has died {} times. Has armors: {}, abilities: {}".format(
+    #         self.name, self.health, self.kills, self.deaths, self.armors, self.abilities,
+    #     ))
 
     def add_ability(self, ability):
         # Add ability to abilities list
@@ -166,6 +166,7 @@ class Ability:
         self.attack_strength = new_attack_strength
 
 class Weapon(Ability):
+
     def attack(self):
         """
         This method should should return a random value
@@ -266,49 +267,231 @@ class Team:
         This data must be output to the console.
         '''
         for hero in self.heroes:
-            print("{} Kills: {} / {}".format(hero.name, hero.kills, hero.deaths))
+            print("{} Kills: Total Hero Killed: {} / Total Times Died: {}".format(hero.name, hero.kills, hero.deaths))
 
-    def remove_empty_list(self):
-        pass
 
 
 class Arena:
-
     def __init__(self):
+        '''
+        Declare variables
+        '''
+        team_name1 = input("Choose your name for team 1: ")
+        team_name2 = input("Choose your name for team 2: ")
+        self.team_one = Team(team_name1)
+        self.team_two = Team(team_name2)
 
-        self.team_one = None
-        self.team_two = None
+    # def weapon_name_validation():
+    #
+    #     weapons_list = [
+    #         "Flower Raygun"
+    #         "Unicorn Wand"
+    #         "Glitter Sash"
+    #         "Lolipop Sword"
+    #         "Peppermint Staff"
+    #         "Shooting Star"
+    #         "Diamond Knuckles"
+    #         "Rainbow Ring"
+    #         ]
+    #
+    #     if input
+    #
+    # def hero_name_validation():
+    #
+    #     heroes_list = [
+    #         "Tooth Fairy"
+    #         "Unicorn"
+    #         "Rainbow Warrior"
+    #         "Galatic Snowflake"
+    #         "Candy Winter"
+    #         "Sugar Queen"
+    #         "Night Swan"
+    #         "Chocolate Surfer"
+    #         "Pinky Berry"
+    #         ]
+    #
+    # def ability_name_validation():
+    #
+    #     abilities_list = [
+    #         "Unicorn Magic"
+    #         "Pony Syndrome"
+    #         "Glitter Mirage"
+    #         "Neon Rainbow"
+    #         "Shooting Star"
+    #         "Flower Power"
+    #         "Flower Explosion"
+    #         "Team Spirit"
+    #         "Joy"
+    #         "Energy Bomb"
+    #         "Beauty"
+    #         "Charisma"
+    #         ]
+    #     input = input()
+    #
+    #     range_abilities_list = len(abilities_list) - 1
+    #     num_abilities_list = list(range(range_abilities_list))
+    #
+    #
+    #     for ability in abilities_list:
+    #         if ability == input or :
+    #             return input
+    #         else:
+
+
+    def create_ability(self):
+        '''
+        This method will allow a user to create an ability.
+
+        Prompt the user for the necessary information to create a new ability object.
+
+        return the new ability object.
+        '''
+        abilities = [
+            "Unicorn Magic"
+            "Pony Syndrome"
+            "Glitter Mirage"
+            "Neon Rainbow"
+            "Shooting Star"
+            "Flower Power"
+            "Flower Explosion"
+            "Team Spirit"
+            "Joy"
+            "Energy Bomb"
+            "Beauty"
+            "Charisma"
+            ]
+        name = input("Choose ability from list abouve:")
+        power = random.randint(10, 50)
+        return Ability(name, power)
+
+    def create_weapon(self):
+        '''
+        This method will allow a user to create a weapon.
+
+        Prompt the user for the necessary information to create a new weapon object.
+
+        return the new weapon object.
+        '''
+        weapons_list = [
+            "Flower Raygun"
+            "Unicorn Wand"
+            "Glitter Sash"
+            "Lolipop Sword"
+            "Peppermint Staff"
+            "Shooting Star"
+            "Diamond Knuckles"
+            "Rainbow Ring"
+            ]
+        name = input("Choose weapon from list abouve:")
+        power = random.randint(20, 40)
+        return Weapon(name, power)
+
+    def create_armor(self):
+        '''
+        This method will allow a user to create a piece of armor.
+
+        Prompt the user for the necessary information to create a new armor object.
+
+        return the new armor object.
+        '''
+
+
+        name = input("Choose armor from list abouve:")
+        power = random.randint(50, 100)
+        return Armor(name, power)
+
+    def create_hero(self):
+        '''
+        This method should allow a user to create a hero.
+
+        User should be able to specify if they want armors, weapons, and abilites. Call the methods you made above and use the return values to build your hero.
+
+        return the new hero object
+        '''
+        heroes = [
+            "Tooth Fairy"
+            "Unicorn"
+            "Rainbow Warrior"
+            "Galatic Snowflake"
+            "Candy Winter"
+            "Sugar Queen"
+            "Night Swan"
+            "Chocolate Surfer"
+            "Pink Berry"
+            ]
+        name = input("Choose hero from list abouve:")
+        print(name)
+        power = random.randint(10, 30)
+        print(power)
+        hero = Hero(name, power)
+        # print(hero)
+        hero.abilities.append(self.create_ability())
+        hero.armors.append(self.create_armor())
+        hero.abilities.append(self.create_weapon())
+        return hero
 
     def build_team_one(self):
-        """
-        This method should allow a user to build team one.
-        """
+        '''
+        This method should allow a user to create team one.
+        Prompt the user for the number of Heroes on team one and
+        call self.create_hero() for every hero that the user wants to add to team one.
 
-
-        # Ask for user input, and return that user user_input
-        pass
+        Add the created hero to team one.
+        '''
+        print("Time to build 3 your warriors for {}".format(self.team_one.name))
+        total_heroes = 3
+        while total_heroes > 0:
+            hero = self.create_hero()
+            total_heroes -= 1
+            self.team_one.add_hero(hero)
 
     def build_team_two(self):
-        """
-        This method should allow user to build team two.
-        """
-        # check out this super kewl short cut command /
-        # do the same as team one
+        '''
+        This method should allow a user to create team two.
+        Prompt the user for the number of Heroes on team two and
+        call self.create_hero() for every hero that the user wants to add to team two.
+
+        Add the created hero to team two.
+        '''
+
+        print("Time to build 3 your warriors for {}".format(self.team_two.name))
+        total_heroes = 3
+        while total_heroes > 0:
+            hero = self.create_hero()
+            total_heroes -= 1
+            self.team_two.add_hero(hero)
 
     def team_battle(self):
-        """
-        This method should continue to battle teams until
-        one or both teams are dead.
-        """
-        # here you are going to call team attack and defend methods
+        '''
+        This method should battle the teams together.
+        Call the attack method that exists in your team objects to do that battle functionality.
+        '''
+        while self.team_one.alive_heroes() and self.team_two.alive_heroes():
+            self.team_one.attack(self.team_two)
+            self.team_two.attack(self.team_one)
+        if len(self.team_one.heroes) <= 0:
+            print(self.team_one.name, " won the battle!")
+            return "Team one won"
+        else:
+            print(self.team_two.name, " won the battle!")
+            return "Team two won!"
 
     def show_stats(self):
-        """
-        This method should print out the battle statistics
-        including each heroes kill/death ratio.
-        """
+        '''
+        This method should print out battle statistics
+        including each team's average kill/death ratio.
 
-#
+        Required Stats:
+        Declare winning team
+        Show both teams average kill/death ratio.
+        Show surviving heroes.
+        '''
+        print("Stats")
+        self.team_one.stats()
+        self.team_two.stats()
+        # print(self.team_battle())
+
+
 # if __name__ == "__main__":
 #
 #     #naming hero one and commanding to attack
@@ -339,29 +522,30 @@ class Arena:
 #     print(hero)
 #     print(hero2)
 
+if __name__ == "__main__":
+    game_is_running = True
 
-    #game_is_running = True
-    #
-    # # Instantiate Game arena
-    # arena = Arena()
-    #
-    # # Build teams
-    # arena.build_team_one()
-    # arena.build_team_two()
-    #
-    # while game_is_running:
-    #     arena.team_battle()
-    #     arena.show_stats()
-    #     play_again = input("Play Again? Y or N:")
-    #
-    #     # Check for Player input
-    #     if play_again.lower() == "n":
-    #         game_is_running = False
-    #
-    #     else:
-    #         # Revive heroes to play Again
-    #         arena.team_one.revive_heroes()
-    #         arena.team_two.revive_heroes()
+    # Instantiate Game Arena
+    arena = Arena()
+
+    #Build Teams
+    arena.build_team_one()
+    arena.build_team_two()
+
+    while game_is_running:
+
+        arena.team_battle()
+        arena.show_stats()
+        play_again = input("Play Again? Y or N: ")
+
+        #Check for Player Input
+        if play_again.lower() == "n":
+            game_is_running = False
+
+        else:
+            #Revive heroes to play again
+            arena.team_one.revive_heroes()
+            arena.team_two.revive_heroes()
 
 
 # test
