@@ -1,6 +1,0 @@
-{
-  "hero_test.py::test_hero_ability_attack_mean_value": true,
-  "team_test.py::test_armor": true,
-  "team_test.py::test_dead_hero_defense": true,
-  "team_test.py::test_hero_defense_mean_value": true
-}

@@ -1,4 +1,5 @@
 import random
+from pprint import pprint
 
 
 class Hero:
@@ -281,62 +282,113 @@ class Arena:
         self.team_one = Team(team_name1)
         self.team_two = Team(team_name2)
 
-    # def weapon_name_validation():
-    #
-    #     weapons_list = [
-    #         "Flower Raygun"
-    #         "Unicorn Wand"
-    #         "Glitter Sash"
-    #         "Lolipop Sword"
-    #         "Peppermint Staff"
-    #         "Shooting Star"
-    #         "Diamond Knuckles"
-    #         "Rainbow Ring"
-    #         ]
-    #
-    #     if input
-    #
-    # def hero_name_validation():
-    #
-    #     heroes_list = [
-    #         "Tooth Fairy"
-    #         "Unicorn"
-    #         "Rainbow Warrior"
-    #         "Galatic Snowflake"
-    #         "Candy Winter"
-    #         "Sugar Queen"
-    #         "Night Swan"
-    #         "Chocolate Surfer"
-    #         "Pinky Berry"
-    #         ]
-    #
-    # def ability_name_validation():
-    #
-    #     abilities_list = [
-    #         "Unicorn Magic"
-    #         "Pony Syndrome"
-    #         "Glitter Mirage"
-    #         "Neon Rainbow"
-    #         "Shooting Star"
-    #         "Flower Power"
-    #         "Flower Explosion"
-    #         "Team Spirit"
-    #         "Joy"
-    #         "Energy Bomb"
-    #         "Beauty"
-    #         "Charisma"
-    #         ]
-    #     input = input()
-    #
-    #     range_abilities_list = len(abilities_list) - 1
-    #     num_abilities_list = list(range(range_abilities_list))
-    #
-    #
-    #     for ability in abilities_list:
-    #         if ability == input or :
-    #             return input
-    #         else:
 
+    #Creating Validations for inputs
+    def weapon_name_validation():
+
+        weapons_list = [
+            "Flower Raygun"
+            "Unicorn Wand"
+            "Glitter Sash"
+            "Lolipop Sword"
+            "Peppermint Staff"
+            "Shooting Star"
+            "Diamond Knuckles"
+            "Rainbow Ring"
+            ]
+
+        pass
+
+    def hero_name_validation():
+
+        heroes_list = [
+            "Tooth Fairy"
+            "Unicorn"
+            "Rainbow Warrior"
+            "Galatic Snowflake"
+            "Candy Winter"
+            "Sugar Queen"
+            "Night Swan"
+            "Chocolate Surfer"
+            "Pinky Berry"
+            ]
+
+        pass
+
+    def ability_name_validation(self):
+
+        abilities_list = [
+            "Unicorn Magic",
+            "Pony Syndrome",
+            "Glitter Mirage",
+            "Neon Rainbow",
+            "Shooting Star",
+            "Flower Power",
+            "Flower Explosion",
+            "Team Spirit",
+            "Joy",
+            "Energy Bomb",
+            "Beauty",
+            "Charisma",
+            ]
+
+        # print("List of abilities:")
+        bracketless_abilities= ''.join(abilities_list)
+
+        # print("The list of all abilities to choose from: {}".format(bracketless_abilities))
+        num_abilities_list = len(abilities_list)
+
+        # print("The number of the list of abilities: {}".format(num_abilities_list))
+        range_abilities_list = list(range(num_abilities_list))
+
+        # print("Range of the list of Abilities: {}".format(range_abilities_list))
+
+        Words = dict(enumerate(abilities_list, 0))
+
+        # print("Dictionary List: {}".format(Words))
+
+        pprint(Words)
+
+        ability_input = input("Choose one ability from list of abilities abouve: ")
+
+        for ability in abilities_list:
+            for number in range_abilities_list:
+                if (ability == ability_input) | (number == int(ability_input)) :
+                    power = random.randint(10, 50)
+                    return Ability(ability_input, power)
+        print("Unknown error try again")
+
+
+    #Methods to create hero and deck them out in armor, gear, abilities
+    def create_hero(self):
+        '''
+        This method should allow a user to create a hero.
+
+        User should be able to specify if they want armors, weapons, and abilites. Call the methods you made above and use the return values to build your hero.
+
+        return the new hero object
+        '''
+        heroes = [
+            "Tooth Fairy"
+            "Unicorn"
+            "Rainbow Warrior"
+            "Galatic Snowflake"
+            "Candy Winter"
+            "Sugar Queen"
+            "Night Swan"
+            "Chocolate Surfer"
+            "Pink Berry"
+            ]
+        name = input("Choose hero from list abouve:")
+        print(name)
+        power = random.randint(10, 30)
+        print(power)
+        hero = Hero(name, power)
+        # print(hero)
+        hero.abilities.append(self.create_ability())
+        hero.armors.append(self.create_armor())
+        hero.abilities.append(self.create_weapon())
+        return hero
 
     def create_ability(self):
         '''
@@ -346,23 +398,9 @@ class Arena:
 
         return the new ability object.
         '''
-        abilities = [
-            "Unicorn Magic"
-            "Pony Syndrome"
-            "Glitter Mirage"
-            "Neon Rainbow"
-            "Shooting Star"
-            "Flower Power"
-            "Flower Explosion"
-            "Team Spirit"
-            "Joy"
-            "Energy Bomb"
-            "Beauty"
-            "Charisma"
-            ]
-        name = input("Choose ability from list abouve:")
+
         power = random.randint(10, 50)
-        return Ability(name, power)
+        return Ability(ability_input, power)
 
     def create_weapon(self):
         '''
@@ -399,36 +437,6 @@ class Arena:
         name = input("Choose armor from list abouve:")
         power = random.randint(50, 100)
         return Armor(name, power)
-
-    def create_hero(self):
-        '''
-        This method should allow a user to create a hero.
-
-        User should be able to specify if they want armors, weapons, and abilites. Call the methods you made above and use the return values to build your hero.
-
-        return the new hero object
-        '''
-        heroes = [
-            "Tooth Fairy"
-            "Unicorn"
-            "Rainbow Warrior"
-            "Galatic Snowflake"
-            "Candy Winter"
-            "Sugar Queen"
-            "Night Swan"
-            "Chocolate Surfer"
-            "Pink Berry"
-            ]
-        name = input("Choose hero from list abouve:")
-        print(name)
-        power = random.randint(10, 30)
-        print(power)
-        hero = Hero(name, power)
-        # print(hero)
-        hero.abilities.append(self.create_ability())
-        hero.armors.append(self.create_armor())
-        hero.abilities.append(self.create_weapon())
-        return hero
 
     def build_team_one(self):
         '''
